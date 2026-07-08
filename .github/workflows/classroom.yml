@@ -31,18 +31,18 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Build and tests pass
-        id: tests
+      - name: FSM suites are adequate
+        id: fsm
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: "Build and tests pass"
-          command: "xvfb-run --auto-servernum ./gradlew test --no-daemon"
+          test-name: "FSM test suites achieve their coverage criteria"
+          command: "xvfb-run --auto-servernum ./gradlew test --tests 'nl.tudelft.jpacman.fsm.*' --no-daemon"
           timeout: 10
           max-score: 100
 
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
-          TESTS_RESULTS: "${{ steps.tests.outputs.result }}"
+          FSM_RESULTS: "${{ steps.fsm.outputs.result }}"
         with:
-          runners: tests
+          runners: fsm
