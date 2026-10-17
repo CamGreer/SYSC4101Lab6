@@ -29,4 +29,4 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: FSM suites are adequate
-        run: xvfb-run --auto-servernum ./gradlew test --tests 'nl.tudelft.jpacman.fsm.*' -x defaultTest --no-daemon
+        run: xvfb-run --auto-servernum ./gradlew test --tests 'nl.tudelft.jpacman.fsm.*' -x defaultTest -x jacocoTestReport --no-daemon
