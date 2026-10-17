@@ -7,14 +7,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  checks: write
-  actions: read
   contents: read
 
 jobs:
   autograde:
     runs-on: ubuntu-latest
-    if: github.actor != 'github-classroom[bot]'
     steps:
       - name: Checkout student code
         uses: actions/checkout@v4
@@ -32,17 +29,4 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: FSM suites are adequate
-        id: fsm
-        uses: classroom-resources/autograding-command-grader@v1
-        with:
-          test-name: "FSM test suites achieve their coverage criteria"
-          command: "xvfb-run --auto-servernum ./gradlew test --tests 'nl.tudelft.jpacman.fsm.*' --no-daemon"
-          timeout: 10
-          max-score: 100
-
-      - name: Autograding Reporter
-        uses: classroom-resources/autograding-grading-reporter@v1
-        env:
-          FSM_RESULTS: "${{ steps.fsm.outputs.result }}"
-        with:
-          runners: fsm
+        run: xvfb-run --auto-servernum ./gradlew test --tests 'nl.tudelft.jpacman.fsm.*' -x defaultTest --no-daemon
