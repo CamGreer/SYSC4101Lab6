@@ -12,7 +12,13 @@ public final class Lab6Suites {
 
     private Lab6Suites() { }
 
-    public static List<String> tsS()  { return List.of(/* TODO */); }
-    public static List<String> tsT()  { return List.of(/* TODO */); }
-    public static List<String> tsTt() { return List.of(/* TODO */); }
+    public static List<String> tsS() {
+        return List.of("aa");
+    }
+    public static List<String> tsT() {
+        return List.of("aaabbb");
+    }
+    public static List<String> tsTt() {
+        return List.of("a", "b", "aa", "ab", "aaa", "aab");
+    }
 }
