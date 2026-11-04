@@ -1,4 +1,4 @@
-# Lab 6 Reflection
+# Lab 6 Reflection 
 
 ## Problem 1: Test suites
 For each test path: input sequence, fired transitions, output sequence.
